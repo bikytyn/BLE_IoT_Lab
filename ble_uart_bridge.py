@@ -1,29 +1,39 @@
 import machine
 import time
+import sys
+import select
 
 uart = machine.UART(0, baudrate=115200)
 
-print("cmd = Enter command mode")
-print("data = Enter data mode")
+print("UART bridge start")
+print("cmd  = posle $$$")
+print("data = posle ---")
 print()
 
 while True:
-    text = input("> ")
 
-    if text == "cmd":
-        uart.write("$$$")
-        time.sleep(0.5)
+    # BLE -> Thonny
+    if uart.any():
+        line = uart.readline()
 
-    elif text == "data":
-        uart.write("---\r")
-        time.sleep(0.5)
+        if line:
+            text = line.decode("utf-8", "ignore").strip()
 
-    else:
-        uart.write(text + "\r")
-        time.sleep(0.5)
+            if text != "":
+                print()
+                print(text, end="")
 
-    while uart.any():
-        response = uart.read()
-        print(response.decode("utf-8", "ignore"), end="")
+    # Thonny -> BLE
+    if select.select([sys.stdin], [], [], 0)[0]:
+        command = sys.stdin.readline().strip()
 
-    print()
+        if command == "cmd":
+            uart.write("$$$")
+
+        elif command == "data":
+            uart.write("---\r")
+
+        else:
+            uart.write(command + "\r")
+
+    time.sleep(0.02)
