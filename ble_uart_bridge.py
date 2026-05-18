@@ -5,9 +5,8 @@ import select
 
 uart = machine.UART(0, baudrate=115200)
 
-print("UART bridge start")
-print("cmd  = posle $$$")
-print("data = posle ---")
+print("cmd  = Enter command mode")
+print("data = Enter data mode")
 print()
 
 while True:
