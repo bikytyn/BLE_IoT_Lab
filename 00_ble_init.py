@@ -21,6 +21,10 @@ time.sleep(0.5)
 uart.write("$$$")
 time.sleep(1)
 
+print("Clearing Services")
+uart.write("PZ\r")
+time.sleep(0.5)
+
 print("Status LED Initialization")
 uart.write("SR,0001\r")
 time.sleep(0.5)
