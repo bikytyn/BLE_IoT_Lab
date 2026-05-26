@@ -28,4 +28,4 @@ while True:
     time.sleep(0.2)
 
     uart.write("IA,16,1A18" + temp_hex + "\r")
-    time.sleep(5)
+    time.sleep(3)
