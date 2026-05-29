@@ -20,7 +20,11 @@ while True:
 
     temp = value * 0.0625
     t100 = int(temp * 100)
-    temp_hex = "{:04X}".format(t100)
+    
+    temp_hex = "{:02X}{:02X}".format(
+        t100 & 0xFF,
+        (t100 >> 8) & 0xFF
+    )
 
     print("{:.2f} °C".format(temp) + " - HEX:", temp_hex)
 
@@ -29,3 +33,4 @@ while True:
 
     uart.write("IA,16,1A18" + temp_hex + "\r")
     time.sleep(3)
+
