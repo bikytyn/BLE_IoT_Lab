@@ -42,6 +42,10 @@ print("GPIO LED Initialization")
 uart.write("|O,0002,0000\r")
 time.sleep(0.5)
 
+print("Stopping Advertising")
+uart.write("Y\r")
+time.sleep(0.5)
+
 uart.write("---\r")
 time.sleep(0.5)
 
