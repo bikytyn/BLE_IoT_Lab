@@ -8,7 +8,7 @@ time.sleep(0.5)
 
 np = neopixel.NeoPixel(machine.Pin(16), 3, bpp=4)
 
-intensity = 10
+intensity = 70
 
 r = 0
 g = 0
