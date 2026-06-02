@@ -3,11 +3,12 @@ import neopixel
 import time
 
 uart = machine.UART(0, baudrate=115200)
-uart.write("---\r")
-time.sleep(0.5)
+uart.write("R,1\r")
+time.sleep(1)
 
 np = neopixel.NeoPixel(machine.Pin(16), 3, bpp=4)
 
+# GLOBAL LED INTENSITY HERE
 intensity = 70
 
 r = 0
@@ -84,16 +85,6 @@ while True:
             b = 255
             w = 0
 
-        elif command.startswith("intensity="):
-
-            intensity = int(command.replace("intensity=", ""))
-
-            if intensity < 0:
-                intensity = 0
-
-            if intensity > 255:
-                intensity = 255
-
         elif command == "gpio_on":
 
             uart.write("$$$")
@@ -103,7 +94,7 @@ while True:
             time.sleep(0.5)
 
             uart.write("---\r")
-            time.sleep(0.5)
+            time.sleep(1)
 
         elif command == "gpio_off":
 
@@ -114,7 +105,7 @@ while True:
             time.sleep(0.5)
 
             uart.write("---\r")
-            time.sleep(0.5)
+            time.sleep(1)
 
         update_leds()
 
