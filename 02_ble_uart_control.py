@@ -32,9 +32,11 @@ def update_leds():
 while True:
 
     if uart.any():
-
-        command = uart.read().decode().strip().lower()
-
+        data = uart.read()
+        try:
+            command = data.decode("utf-8").strip().lower()
+        except:
+            command = ""
         print(command)
 
         if command == "off":
