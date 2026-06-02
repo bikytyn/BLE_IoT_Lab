@@ -11,7 +11,7 @@ print()
 
 while True:
 
-    # BLE -> Thonny
+    # RNBD350 -> Thonny
     if uart.any():
         line = uart.readline()
 
@@ -22,7 +22,7 @@ while True:
                 print()
                 print(text, end="")
 
-    # Thonny -> BLE
+    # Thonny -> RNBD350
     if select.select([sys.stdin], [], [], 0)[0]:
         command = sys.stdin.readline().strip()
 
