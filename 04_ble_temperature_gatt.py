@@ -7,7 +7,7 @@ i2c = machine.I2C(1, sda=machine.Pin(14), scl=machine.Pin(15), freq=100000)
 addr = 0x48
 i2c.writeto_mem(addr, 0x01, b'\x60')
 
-# INSERT HANDLE BELOW
+# INSERT HANDLE HERE
 gatt_handle = "1002"
 
 uart.write("$$$")
